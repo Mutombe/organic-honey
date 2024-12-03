@@ -84,7 +84,7 @@ export const AboutUs = () => {
               Our Story
             </h3>
             <p className={`${honeyPalette.textPrimary} opacity-80 leading-relaxed`}>
-              Founded in 2010, Mountain Meadow Honey began with a simple yet profound mission: 
+              Founded in 2010, Organic Honey began with a simple yet profound mission: 
               to produce the purest, most delicious honey while respecting nature's delicate balance. 
               Our family-owned apiaries span across pristine mountain valleys, where generations 
               of beekeeping wisdom meet modern sustainable practices.
@@ -98,7 +98,7 @@ export const AboutUs = () => {
             className={`${honeyPalette.cardBackground} backdrop-blur-md rounded-xl p-6 md:p-8 transition-all duration-300 shadow-lg`}
           >
             <h3 className={`text-2xl font-bold ${honeyPalette.textPrimary} mb-4 flex items-center`}>
-              <Leaf className="mr-3 text-green-700" size={32} />
+              <Leaf className="mr-3 text-amber-600" size={32} />
               Our Values
             </h3>
             <ul className={`${honeyPalette.textPrimary} opacity-80 space-y-3`}>
