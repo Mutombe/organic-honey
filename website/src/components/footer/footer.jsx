@@ -29,7 +29,7 @@ export const Footer = () => {
     {
       title: "Explore",
       links: [
-        { name: "Home", href: "/home" },
+        { name: "Home", href: "/" },
         { name: "Our Story", href: "/about" },
         { name: "Honey Collection", href: "/honey" },
         { name: "Contact Us", href: "/contact" },
