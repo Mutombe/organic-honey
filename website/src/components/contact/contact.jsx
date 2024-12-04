@@ -89,7 +89,7 @@ export const Contact = () => {
           />
           
           <h1 className={`text-4xl md:text-5xl font-extrabold ${honeyPalette.textPrimary} mb-4 text-center relative z-10`}>
-            Contact Mountain Meadow Honey 🐝
+            Contact Organic Honey 🐝
           </h1>
           <p className={`text-xl md:text-2xl ${honeyPalette.textSecondary} mb-8 opacity-90 text-center relative z-10`}>
             We're Here to Sweeten Your Day
