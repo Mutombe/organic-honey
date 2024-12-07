@@ -120,7 +120,7 @@ export const Home = () => {
             Organic Honey Co. 🍯
           </h1>
           <p className={`text-xl md:text-2xl ${honeyPalette.textSecondary} mb-8 opacity-90 relative z-10`}>
-            Nature's Sweetest Treasure, Crafted with Care
+            Nature's Sweetest Gift
           </p>
           
           <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4 relative z-10">

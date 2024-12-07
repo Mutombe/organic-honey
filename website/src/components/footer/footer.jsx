@@ -59,9 +59,8 @@ export const Footer = () => {
           {/* Brand Section */}
           <div>
             <div className="flex items-center mb-6">
-              <Leaf className={`mr-2 ${honeyPalette.textPrimary}`} size={32} />
+              <img src="/ohlogo.png" alt="" className="h-10 w-15"/>
               <h3 className={`text-2xl font-bold ${honeyPalette.textPrimary}`}>
-                Organic Honey
               </h3>
             </div>
             <p className={`${honeyPalette.textSecondary} mb-4`}>

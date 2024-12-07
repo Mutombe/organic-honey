@@ -38,7 +38,7 @@ export const Navigation = React.memo(() => {
       x: 0,
       transition: { duration: 0.3, ease: "easeInOut" },
     },
-  };
+  }; {/*🐝*/}
 
   return (
     <nav className="sticky top-0 z-50 bg-amber-200 shadow-md">
@@ -48,7 +48,7 @@ export const Navigation = React.memo(() => {
           <div
             className={`text-2xl font-bold ${honeyTextColor} flex items-center`}
           >
-            🐝 Organic Honey
+            <img src="/ohlogo.png" alt="" className="h-10 w-15"/>
           </div>
         </Link>
 
