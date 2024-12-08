@@ -35,9 +35,9 @@ export const AboutUs = () => {
 
   // Team members data
   const teamMembers = [
-    { name: "Elena Rodriguez", role: "Head Beekeeper", image: "/44.png" },
-    { name: "Michael Chen", role: "Sustainability Director", image: "/44.png" },
-    { name: "Sarah Thompson", role: "Quality Assurance Lead", image: "/44.png" }
+    { name: "Mr Tera", role: "Head Beekeeper & CEO", image: "/44.png" },
+    { name: "Michael Muchacha", role: "Sustainability Director", image: "/44.png" },
+    { name: "Sarah Muhera", role: "Quality Assurance Lead", image: "/44.png" }
   ];
 
   // Certification data

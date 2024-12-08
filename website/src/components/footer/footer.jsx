@@ -8,6 +8,7 @@ import {
   Facebook,
   Instagram,
   Twitter,
+  Linkedin,
   Leaf,
   Shield,
   Award,
@@ -49,7 +50,9 @@ export const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: "#" },
     { icon: Instagram, href: "#" },
+    { icon: Linkedin, href: "#" },
     { icon: Twitter, href: "#" },
+    
   ];
 
   return (
