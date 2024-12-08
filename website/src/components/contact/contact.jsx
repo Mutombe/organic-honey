@@ -6,6 +6,17 @@ import {
   Globe,
   Heart
 } from 'lucide-react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
+});
+
 
 // Reuse the Honey Palette from Home Page
 const honeyPalette = {
@@ -57,6 +68,9 @@ export const Contact = () => {
     // TODO: Implement form submission logic
     console.log('Form submitted:', formData);
   };
+
+  const companyLocation = [-17.8728202,31.0552817]; // Latitude and Longitude for Harare, Zimbabwe
+
 
   return (
     <motion.div
@@ -160,6 +174,37 @@ export const Contact = () => {
         </motion.div>
       </div>
 
+      {/* Map Section */}
+      <div className="container mx-auto px-4 py-16">
+        <motion.div 
+          variants={itemVariants}
+          className={`${honeyPalette.cardBackground} backdrop-blur-sm rounded-xl p-8 overflow-hidden`}
+        >
+          <h2 className={`text-3xl font-bold ${honeyPalette.textPrimary} mb-6 text-center`}>
+            Our Location
+          </h2>
+          <div className="w-full h-[500px] rounded-xl overflow-hidden shadow-lg">
+            <MapContainer 
+              center={companyLocation} 
+              zoom={13} 
+              scrollWheelZoom={false}
+              className="h-full w-full"
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={companyLocation}>
+                <Popup>
+                  Organic Honey Office<br />
+                  401/6 Mavhonde road, Cranborne Ave W, Harare
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Global Community Section */}
       <div className="container mx-auto px-4 py-16">
         <motion.div 
@@ -198,4 +243,3 @@ export const Contact = () => {
 };
 
 export default Contact;
-  

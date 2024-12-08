@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Flower, 
+  Droplet, 
   ShoppingCart,
-  TreePine,
-  Info,
-  Heart,
-  Droplet,
   Filter,
-  X
+  X,
+  Info
 } from 'lucide-react';
 
 // Mobile-First Color Palette
@@ -16,118 +13,91 @@ const honeyPalette = {
   background: "bg-gradient-to-br from-amber-50 to-yellow-100",
   textPrimary: "text-amber-900",
   textSecondary: "text-amber-700",
-  cardBackground: "bg-white/70", // Increased opacity for better readability
+  cardBackground: "bg-white/70",
   buttonPrimary: "bg-amber-500 hover:bg-amber-600",
   buttonSecondary: "border-2 border-amber-700 text-amber-900 hover:bg-amber-100"
 };
 
 export const OurHoney = () => {
   const [cart, setCart] = useState([]);
-  const [selectedHoney, setSelectedHoney] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [filter, setFilter] = useState('all');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
-  const honeyTypes = [
+  const productTypes = [
+    // Bottled Honey Products
     { 
-      name: 'Wildflower Honey', 
-      description: 'Collected from diverse wildflower meadows, rich in complex flavors.',
-      category: 'wildflower',
-      icon: <Flower className="w-8 h-8 md:w-12 md:h-12 text-amber-700" />,
-      price: 12.99,
-      details: {
-        origin: 'Mountain Valley Meadows',
-        harvest: 'Summer Solstice',
-        flavor: 'Complex, multi-floral',
-        benefits: [
-          'Rich in antioxidants',
-          'Natural energy booster',
-          'Supports local ecosystem'
-        ]
-      },
-      image: '/og4.jpg'
+      name: 'Wildflower Bottled Honey', 
+      category: 'honey',
+      type: 'bottled',
+      weight: '500g',
+      price: 4.00,
+      description: 'Pure wildflower honey, locally sourced and carefully bottled.',
+      image: '/og6.webp',
+      inStock: true
     },
     { 
-      name: 'Lavender Honey', 
-      description: 'Delicate honey with a subtle lavender essence from mountain apiaries.',
-      category: 'herbal',
-      icon: <TreePine className="w-8 h-8 md:w-12 md:h-12 text-amber-700" />,
-      price: 15.99,
-      details: {
-        origin: 'Alpine Lavender Fields',
-        harvest: 'Early Summer',
-        flavor: 'Delicate, floral',
-        benefits: [
-          'Calming properties',
-          'Aids sleep',
-          'Natural skin care'
-        ]
-      },
-      image: '/og5.webp'
+      name: 'Wildflower Combed Honey', 
+      category: 'honey',
+      type: 'combed',
+      weight: '500g',
+      price: 3.00,
+      description: 'Natural combed honey with honeycomb intact, straight from the hive.',
+      image: '/comb4.webp',
+      inStock: true
     },
-    {
-      name: 'Manuka Honey',
-      description: 'Rare New Zealand honey known for its exceptional medicinal properties.',
-      category: 'medicinal',
-      icon: <TreePine className="w-8 h-8 md:w-12 md:h-12 text-amber-700" />,
-      price: 29.99,
-      details: {
-          origin: 'New Zealand Manuka Forests',
-          harvest: 'Late Spring',
-          flavor: 'Rich, slightly earthy',
-          benefits: [
-              'Powerful antibacterial properties',
-              'Wound healing support',
-              'Immune system boost'
-          ]
-      },
-      image: '/og1.jpg'
+    // Wholesale Honey Options
+    { 
+      name: 'Wholesale Wildflower Honey (5kg)', 
+      category: 'wholesale',
+      type: 'bottled',
+      weight: '5kg',
+      price: 35.00,
+      description: 'Bulk honey for businesses and large-scale consumers.',
+      image: '/bulk.jpg',
+      inStock: true
     },
-    {
-      name: 'Acacia Honey',
-      description: 'Light and clear honey with a delicate, pure sweetness from acacia tree blossoms.',
-      category: 'floral',
-      icon: <TreePine className="w-8 h-8 md:w-12 md:h-12 text-amber-700" />,
-      price: 14.50,
-      details: {
-          origin: 'European Acacia Forests',
-          harvest: 'Spring',
-          flavor: 'Mild, nearly transparent',
-          benefits: [
-              'Low glycemic index',
-              'Helps digestive health',
-              'Mild and smooth taste'
-          ]
-      },
-      image: '/og2.jpeg'
+    // Beeswax Products
+    { 
+      name: 'Raw Beeswax Blocks', 
+      category: 'beeswax',
+      type: 'raw',
+      weight: '250g',
+      price: 6.50,
+      description: 'Pure, unprocessed beeswax blocks for crafting and cosmetics.',
+      image: '/wax1.webp',
+      inStock: true
     },
-    {
-      name: 'Buckwheat Honey',
-      description: 'Dark, robust honey with a strong, molasses-like flavor from wild buckwheat fields.',
-      category: 'robust',
-      icon: <TreePine className="w-8 h-8 md:w-12 md:h-12 text-amber-700" />,
-      price: 13.75,
-      details: {
-          origin: 'Midwestern Prairie Lands',
-          harvest: 'Late Summer',
-          flavor: 'Bold, slightly spicy',
-          benefits: [
-              'High in antioxidants',
-              'Natural cough suppressant',
-              'Supports heart health'
-          ]
-      },
-      image: '/og3.webp'
-  }
+    { 
+      name: 'Beeswax Candle Making Kit', 
+      category: 'beeswax',
+      type: 'kit',
+      weight: '500g',
+      price: 15.00,
+      description: 'Complete kit with beeswax and supplies for making your own candles.',
+      image: '/kit.webp',
+      inStock: true
+    },
+    { 
+      name: 'Cosmetic Grade Beeswax', 
+      category: 'beeswax',
+      type: 'refined',
+      weight: '100g',
+      price: 8.00,
+      description: 'Highly refined beeswax perfect for skincare and cosmetic formulations.',
+      image: '/cosm.webp',
+      inStock: true
+    }
   ];
 
-  // Mobile-Optimized Animation Variants
+  // Animation configurations remain the same as in previous component
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
       transition: { 
         delayChildren: 0.2,
-        staggerChildren: 0.1 // Faster stagger for mobile
+        staggerChildren: 0.1
       }
     }
   };
@@ -138,33 +108,33 @@ export const OurHoney = () => {
       y: 0, 
       opacity: 1,
       transition: {
-        type: "spring", // Softer spring animation
+        type: "spring",
         stiffness: 100
       }
     }
   };
 
-  const addToCart = (honey) => {
+  const addToCart = (product) => {
     setCart(prevCart => {
-      // Check if item already in cart to prevent duplicates
-      const existingItem = prevCart.find(item => item.name === honey.name);
+      const existingItem = prevCart.find(item => item.name === product.name);
       return existingItem 
         ? prevCart 
-        : [...prevCart, { ...honey, quantity: 1 }];
+        : [...prevCart, { ...product, quantity: 1 }];
     });
   };
 
-  const openHoneyDetails = (honey) => {
-    setSelectedHoney(honey);
+  const openProductDetails = (product) => {
+    setSelectedProduct(product);
   };
 
-  const closeHoneyDetails = () => {
-    setSelectedHoney(null);
+  const closeProductDetails = () => {
+    setSelectedProduct(null);
   };
 
-  const filteredHoneys = filter === 'all' 
-    ? honeyTypes 
-    : honeyTypes.filter(honey => honey.category === filter);
+  // Filtering logic with multiple filter options
+  const filteredProducts = productTypes.filter(product => 
+    filter === 'all' || product.category === filter
+  );
 
   return (
     <motion.div
@@ -176,7 +146,7 @@ export const OurHoney = () => {
         px-4 py-6 md:py-16 relative overflow-hidden
       `}
     >
-      {/* Mobile-Friendly Page Header */}
+      {/* Page Header */}
       <motion.h2 
         variants={itemVariants}
         className={`
@@ -184,7 +154,7 @@ export const OurHoney = () => {
           ${honeyPalette.textPrimary} font-bold
         `}
       >
-        Our Honey Collection 🍯
+        Our Organic Honey & Beeswax 🍯
       </motion.h2>
 
       {/* Mobile Filter Toggle */}
@@ -201,7 +171,7 @@ export const OurHoney = () => {
           `}
         >
           <Filter className="mr-2" size={16} />
-          Filter Honey
+          Filter Products
         </motion.button>
       </motion.div>
 
@@ -221,7 +191,7 @@ export const OurHoney = () => {
               className="bg-white w-full rounded-t-2xl p-6 max-h-[70vh] overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Filter Honey</h3>
+                <h3 className="text-xl font-bold">Filter Products</h3>
                 <motion.button 
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsMobileFilterOpen(false)}
@@ -230,7 +200,7 @@ export const OurHoney = () => {
                 </motion.button>
               </div>
               <div className="space-y-3">
-                {['all', 'wildflower', 'herbal'].map((category) => (
+                {['all', 'honey', 'beeswax', 'wholesale'].map((category) => (
                   <motion.button
                     key={category}
                     whileTap={{ scale: 0.95 }}
@@ -255,12 +225,12 @@ export const OurHoney = () => {
         )}
       </AnimatePresence>
 
-      {/* Desktop Filter (Hidden on Mobile) */}
+      {/* Desktop Filter */}
       <motion.div 
         variants={itemVariants}
         className="hidden md:flex justify-center mb-8 space-x-4"
       >
-        {['all', 'wildflower', 'herbal'].map((category) => (
+        {['all', 'honey', 'beeswax', 'wholesale'].map((category) => (
           <motion.button
             key={category}
             whileTap={{ scale: 0.9 }}
@@ -279,40 +249,47 @@ export const OurHoney = () => {
         ))}
       </motion.div>
 
-      {/* Honey Products Grid - Mobile-First Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ">
-        {filteredHoneys.map((honey) => (
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {filteredProducts.map((product) => (
           <motion.div 
-            key={honey.name}
+            key={product.name}
             variants={itemVariants}
-            whileHover={{ scale: 1.02 }} // Softer hover for mobile
+            whileHover={{ scale: 1.02 }}
             className={`
               ${honeyPalette.cardBackground} backdrop-blur-sm 
               p-4 md:p-6 rounded-xl flex flex-col items-center text-center shadow-lg
             `}
           >
-            <div className="mb-4">{honey.icon}</div>
+            <img 
+              src={product.image} 
+              alt={product.name} 
+              className="w-full h-48 object-cover rounded-xl mb-4"
+            />
             <div>
               <h3 className={`text-xl md:text-2xl font-bold ${honeyPalette.textPrimary} mb-2`}>
-                {honey.name}
+                {product.name}
               </h3>
               <p className={`${honeyPalette.textSecondary} opacity-70 mb-4 text-sm md:text-base`}>
-                {honey.description}
+                {product.description}
               </p>
               <div className="flex flex-col items-center space-y-3">
-                <span className={`text-lg md:text-xl font-bold ${honeyPalette.textPrimary}`}>
-                  ${honey.price.toFixed(2)}
-                </span>
+                <div className="flex items-center space-x-2">
+                  <span className={`text-lg md:text-xl font-bold ${honeyPalette.textPrimary}`}>
+                    ${product.price.toFixed(2)}
+                  </span>
+                  <span className="text-sm text-gray-500">({product.weight})</span>
+                </div>
                 <div className="flex space-x-3">
                   <motion.button 
-                    onClick={() => addToCart(honey)}
+                    onClick={() => addToCart(product)}
                     whileTap={{ scale: 0.9 }}
                     className="bg-amber-500 text-white px-4 py-2 rounded-full flex items-center text-sm"
                   >
                     <ShoppingCart className="mr-2 w-4 h-4" /> Add to Cart
                   </motion.button>
                   <motion.button 
-                    onClick={() => openHoneyDetails(honey)}
+                    onClick={() => openProductDetails(product)}
                     whileTap={{ scale: 0.9 }}
                     className="border-2 border-amber-700 text-amber-900 px-4 py-2 rounded-full flex items-center text-sm"
                   >
@@ -339,15 +316,15 @@ export const OurHoney = () => {
         </motion.div>
       )}
 
-      {/* Honey Details Modal */}
+      {/* Product Details Modal */}
       <AnimatePresence>
-        {selectedHoney && (
+        {selectedProduct && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 shadow-lg"
-            onClick={closeHoneyDetails}
+            onClick={closeProductDetails}
           >
             <motion.div 
               initial={{ scale: 0.9 }}
@@ -356,45 +333,39 @@ export const OurHoney = () => {
               className="bg-white rounded-xl w-full max-w-md md:max-w-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Responsive Modal Layout */}
               <div className="flex flex-col md:flex-row items-center">
                 <img 
-                  src={selectedHoney.image} 
-                  alt={selectedHoney.name} 
+                  src={selectedProduct.image} 
+                  alt={selectedProduct.name} 
                   className="w-full md:w-1/2 rounded-xl mb-4 md:mb-0 md:mr-6"
                 />
                 <div className="text-center md:text-left">
                   <h3 className={`text-2xl md:text-3xl font-bold ${honeyPalette.textPrimary} mb-4`}>
-                    {selectedHoney.name}
+                    {selectedProduct.name}
                   </h3>
                   <div className="space-y-3">
-                    {/* Responsive Details */}
                     <div className="flex items-center justify-center md:justify-start">
                       <Droplet className="mr-2 text-amber-700" />
-                      <span>Origin: {selectedHoney.details.origin}</span>
+                      <span>Weight: {selectedProduct.weight}</span>
                     </div>
                     <div className="flex items-center justify-center md:justify-start">
-                      <Heart className="mr-2 text-red-700" />
-                      <span>Harvest: {selectedHoney.details.harvest}</span>
+                      <ShoppingCart className="mr-2 text-amber-700" />
+                      <span>Price: ${selectedProduct.price.toFixed(2)}</span>
                     </div>
-                    <div>
-                      <h4 className={`${honeyPalette.textPrimary} font-bold mb-2`}>Benefits:</h4>
-                      <ul className="list-disc list-inside text-center md:text-left">
-                        {selectedHoney.details.benefits.map((benefit, index) => (
-                          <li key={index} className={`${honeyPalette.textPrimary} opacity-80`}>
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="mt-4">
+                      <p className={`${honeyPalette.textPrimary} opacity-80`}>
+                        {selectedProduct.description}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mt-6 flex flex-col md:flex-row justify-center md:justify-end space-y-3 md:space-y-0 md:space-x-3">
+
+          <div className="mt-6 flex flex-col md:flex-row justify-center md:justify-end space-y-3 md:space-y-0 md:space-x-3">
                 <motion.button 
                   onClick={() => {
-                    addToCart(selectedHoney);
-                    closeHoneyDetails();
+                    addToCart(selectedProduct);
+                    closeProductDetails();
                   }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-amber-500 text-white px-6 py-3 rounded-full flex items-center justify-center"
@@ -402,9 +373,9 @@ export const OurHoney = () => {
                   <ShoppingCart className="mr-2" /> Add to Cart
                 </motion.button>
                 <motion.button 
-                  onClick={closeHoneyDetails}
+                  onClick={closeProductDetails}
                   whileTap={{ scale: 0.9 }}
-                  className="border-2 border-amber-700 text-amber-900 px-6 py-3 rounded-full"
+                  className="border-2 border-amber-700 text-amber-900 px-6 py-3 rounded-full flex items-center justify-center"
                 >
                   Close
                 </motion.button>
