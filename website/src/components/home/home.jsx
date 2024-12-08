@@ -136,7 +136,7 @@ export const Home = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={()=> navigate("/honey")}
+              onClick={()=> navigate("/about")}
               className={`${honeyPalette.buttonSecondary} px-6 py-3 rounded-full transition flex items-center justify-center`}
             >
               <Play className="mr-2" size={20} />
