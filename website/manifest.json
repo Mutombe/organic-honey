@@ -1,0 +1,13 @@
+{
+    "name": "Organic Honey",
+    "short_name": "Organic Honey",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "/ohlogo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  
