@@ -49,8 +49,8 @@ export const Footer = () => {
 
   const socialLinks = [
     { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61570063476502" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/organic-honey-business/" },
     { icon: Instagram, href: "#" },
-    { icon: Linkedin, href: "#" },
     { icon: Twitter, href: "#" },
     
   ];
